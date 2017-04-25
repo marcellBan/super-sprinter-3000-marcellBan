@@ -29,7 +29,7 @@ def add_story():
         }
         status = dict(zip(STATUSES, [x == story['status'] for x in STATUSES]))
         # return empty form
-        return render_template('form.html', edit=False, story=story)
+        return render_template('form.html', edit=False, story=story, status=status)
     elif request.method == 'POST':
         # save data
         return 'not really sure where to go here'
@@ -48,7 +48,7 @@ def modify_story(story_id):
         }
         status = dict(zip(STATUSES, [x == story['status'] for x in STATUSES]))
         # return data
-        return render_template('form.html', edit=True, story=story, status)
+        return render_template('form.html', edit=True, story=story, status=status)
     # FIXME: should this use PUT?
     elif request.method == 'POST':
         # update data
