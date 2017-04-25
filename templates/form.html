@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% if not edit %}
+    <title>Super Sprinter 3000 - Add new story</title>
+    {% else %}
+    <title>Super Sprinter 3000 - Edit story</title>
+    {% endif %}
+</head>
+
+<body>
+    {% if edit %}
+    <form action="/story/{{ story["id"] }}" method="POST">
+    {% else %}
+    <form action="/story" method="POST">
+    {% endif %}
+        <p>
+            <label for="title">Story Title</label>
+            <br>
+            <input name="title" type="text" value="{{ story["title"] }}">
+        </p>
+
+        <p>
+            <label for="description">User Story</label>
+            <br>
+            <textarea name="description">{{ story["description"] }}</textarea>
+        </p>
+
+        <p>
+            <label for="accept">Acceptance criteria</label>
+            <br>
+            <textarea name="accept">{{ story["accept"] }}</textarea>
+        </p>
+
+        <p>
+            <label for="business_value">Business Value</label>
+            <br>
+            <input name="business_value" type="number" min="100" max="1500" step="100" value="{{ story["business_value"] }}">
+        </p>
+
+        <p>
+            <label for="estimation">Estimation (h)</label>
+            <br>
+            <input name="estimation" type="number" min="0.5" max="40" step="0.5" value="{{ story["estimation"] }}">
+        </p>
+
+        <p>
+            <label for="status">Status</label>
+            <br>
+            <select name="status">
+                {% for st in story["status"] %}
+                <option {% if story["status"][st] %}selected{% endif %}>{{ st }}</option>
+                {% endfor %}
+            </select>
+        </p>
+
+        <p><input type="submit" value={% if edit %} "Update" {% else %} "Create" {% endif %}></p>
+    </form>
+</body>
+
+</html>
