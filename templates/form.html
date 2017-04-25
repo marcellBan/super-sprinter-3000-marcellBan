@@ -7,24 +7,25 @@
     {% else %}
     <title>Super Sprinter 3000 - Edit story</title>
     {% endif %}
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
 </head>
 
 <body>
     {% if edit %}
-    <form action="/story/{{ story["id"] }}" method="POST">
+    <form action="/story/{{ story["id"] }}" method="POST" class="data-form">
     {% else %}
-    <form action="/story" method="POST">
+    <form action="/story" method="POST" class="data-form">
     {% endif %}
         <p>
             <label for="title">Story Title</label>
             <br>
-            <input name="title" type="text" value="{{ story["title"] }}">
+            <input name="title" id="title" class="input-field" type="text" value="{{ story["title"] }}">
         </p>
 
         <p>
             <label for="description">User Story</label>
             <br>
-            <textarea name="description">
+            <textarea name="description" id="description" class="input-field">
                 {{- story["description"] -}}
             </textarea>
         </p>
@@ -32,7 +33,7 @@
         <p>
             <label for="accept">Acceptance criteria</label>
             <br>
-            <textarea name="accept">
+            <textarea name="accept" id="accept" class="input-field">
                 {{- story["accept"] -}}
             </textarea>
         </p>
@@ -40,26 +41,26 @@
         <p>
             <label for="business_value">Business Value</label>
             <br>
-            <input name="business_value" type="number" min="100" max="1500" step="100" value="{{ story["business_value"] }}">
+            <input name="business_value" id="business_value" class="input-field" type="number" min="100" max="1500" step="100" value="{{ story["business_value"] }}">
         </p>
 
         <p>
             <label for="estimation">Estimation (h)</label>
             <br>
-            <input name="estimation" type="number" min="0.5" max="40" step="0.5" value="{{ story["estimation"] }}">
+            <input name="estimation" id="estimation" class="input-field" type="number" min="0.5" max="40" step="0.5" value="{{ story["estimation"] }}">
         </p>
 
         <p>
             <label for="status">Status</label>
             <br>
-            <select name="status">
+            <select name="status" id="status" class="input-field">
                 {% for st in status|dictsort %}
                 <option {% if st[1] %}selected{% endif %}>{{ st[0] }}</option>
                 {% endfor %}
             </select>
         </p>
 
-        <p><input type="submit" value={% if edit -%} "Update" {%- else -%} "Create" {%- endif %}></p>
+        <p><input id="submit" type="submit" value={% if edit -%} "Update" {%- else -%} "Create" {%- endif %}></p>
     </form>
 </body>
 
