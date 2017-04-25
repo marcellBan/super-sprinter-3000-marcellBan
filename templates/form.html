@@ -24,13 +24,17 @@
         <p>
             <label for="description">User Story</label>
             <br>
-            <textarea name="description">{{ story["description"] }}</textarea>
+            <textarea name="description">
+                {{- story["description"] -}}
+            </textarea>
         </p>
 
         <p>
             <label for="accept">Acceptance criteria</label>
             <br>
-            <textarea name="accept">{{ story["accept"] }}</textarea>
+            <textarea name="accept">
+                {{- story["accept"] -}}
+            </textarea>
         </p>
 
         <p>
@@ -49,13 +53,13 @@
             <label for="status">Status</label>
             <br>
             <select name="status">
-                {% for st in status %}
-                <option {% if status[st] %}selected{% endif %}>{{ st }}</option>
+                {% for st in status|dictsort %}
+                <option {% if st[1] %}selected{% endif %}>{{ st[0] }}</option>
                 {% endfor %}
             </select>
         </p>
 
-        <p><input type="submit" value={% if edit %} "Update" {% else %} "Create" {% endif %}></p>
+        <p><input type="submit" value={% if edit -%} "Update" {%- else -%} "Create" {%- endif %}></p>
     </form>
 </body>
 

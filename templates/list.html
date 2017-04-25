@@ -6,6 +6,34 @@
 </head>
 
 <body>
+    <a href="/story"><button>Add new User Story</button></a>
+    <table border="1">
+        <tr>
+            <td>ID</td>
+            <td>Story Title</td>
+            <td>User Story</td>
+            <td>Acceptance Criteria</td>
+            <td>Business Value</td>
+            <td>Estimation</td>
+            <td>Status</td>
+            <td>Actions</td>
+        </tr>
+    {% for story in stories %}
+    <tr>
+        <td>{{ story["id"] }}</td>
+        <td>{{ story["title"] }}</td>
+        <td>{{ story["description"] }}</td>
+        <td>{{ story["accept"] }}</td>
+        <td>{{ story["business_value"] }}</td>
+        <td>{{ story["estimation"] }}h</td>
+        <td>{{ story["status"] }}</td>
+        <td>
+            <a href="/story/{{ story["id"] }}"><img src="/static/img/pen.png" width="32" height="32"></a>
+            <a href="/deletestory/{{ story["id"] }}"><img src="/static/img/bin.png" width="32" height="32"></a>
+        </td>
+    </tr>
+    {% endfor %}
+    </table>
 </body>
 
 </html>
