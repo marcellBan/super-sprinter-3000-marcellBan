@@ -77,7 +77,8 @@ def modify_story(story_id):
 @app.route('/deletestory/<int:story_id>', methods=['GET'])
 def del_story(story_id):
     data = load_data()
-    del(data[story_id])
+    if data.get(story_id) is not None:
+        del(data[story_id])
     save_data(data)
     return redirect(url_for('list_stories'))
 
